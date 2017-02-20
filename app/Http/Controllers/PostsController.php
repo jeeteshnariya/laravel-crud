@@ -79,8 +79,9 @@ class PostsController extends Controller
     {
     
         $post = Post::findOrFail($id);
-        $post->delete();
-
+       
+        $post->comments()->delete();
+         $post->delete();
         Session::flash('flash_message', 'Post successfully deleted!');
 
         return redirect()->route('posts.index');
