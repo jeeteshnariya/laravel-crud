@@ -11,7 +11,11 @@ use Session;
 
 class PostsController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth',['except' => ['index','show'] ]);
+    }
+    
     protected $rules = [
             'name' => ['required', 'min:3'],
             'content' => ['required'],
